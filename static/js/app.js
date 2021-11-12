@@ -56,15 +56,15 @@ const processData = function (data) {
     d3.select("#sample-metadata").append(metadata[names[0]]);
 };
 
-const optionChanged = function(dataId) {
+const optionChanged = function (dataId) {
     d3.json("/static/js/samples.json")
-    .then(data => {
-        data.names = data.names.filter(name => name == dataId);
-        data.samples = data.samples.filter(sample => sample.id == dataId);
-        data.metadata = data.metadata.filter(metadata => metadata.id == dataId);
-        return data;
-    })
-    .then(processData)
+        .then(data => {
+            data.names = data.names.filter(name => name == dataId);
+            data.samples = data.samples.filter(sample => sample.id == dataId);
+            data.metadata = data.metadata.filter(metadata => metadata.id == dataId);
+            return data;
+        })
+        .then(processData)
 }
 
 d3.json("/static/js/samples.json").then(processData);
